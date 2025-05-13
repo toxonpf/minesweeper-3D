@@ -9,30 +9,42 @@ let mines = setings[3].value;
 var mineCkets = [];
 var isFirstClick = true;
 
-for (let l = 0; l < leveles; l++) {
-    relFields.append('<table border="1" class="field"></table>');
-    let field = $('.field')[l];
-    for (let r = 0; r < rows; r++) {
-        $(field).append('<tr></tr>');
-        let row = $(field).children('tr')[r];
-        for (let c = 0; c < cols; c++) {
-            $(row).append('<td></td>');
-            let cell = $(row).children('td')[c];
-            $(cell).attr('id', 'l' + l + 'r' + r + 'c' + c);
-            $(cell).addClass('cell');
-            $(cell).attr('onclick', 'openCell(this)');
+function setFieldes() {
+    for (let l = 0; l < leveles; l++) {
+        relFields.append('<table border="1" class="field"></table>');
+        let field = $('.field')[l];
+        for (let r = 0; r < rows; r++) {
+            $(field).append('<tr></tr>');
+            let row = $(field).children('tr')[r];
+            for (let c = 0; c < cols; c++) {
+                $(row).append('<td></td>');
+                let cell = $(row).children('td')[c];
+                $(cell).attr('id', 'l' + l + 'r' + r + 'c' + c);
+                $(cell).addClass('cell');
+                $(cell).attr('onclick', 'openCell(this)');
 
-            $(cell).on('mouseenter', function () { paintNaighbors(this, 'on') });
-            $(cell).on('mouseleave', function () { paintNaighbors(this, 'off') });
+                $(cell).on('mouseenter', function () { paintNaighbors(this, 'on') });
+                $(cell).on('mouseleave', function () { paintNaighbors(this, 'off') });
 
-            // Добавляем обработчик правой кнопки мыши для флажка
-            $(cell).on('contextmenu', function (e) {
-                e.preventDefault();
-                toggleFlag(this);
-            });
+                // Добавляем обработчик правой кнопки мыши для флажка
+                $(cell).on('contextmenu', function (e) {
+                    e.preventDefault();
+                    toggleFlag(this);
+                });
+            }
         }
     }
 }
+setFieldes();
+$(document).on('input', function () {
+    rows = setings[0].value;
+    cols = setings[1].value;
+    leveles = setings[2].value;
+    mines = setings[3].value;
+
+    relFields.empty();
+    setFieldes();
+});
 
 function openCell(cell) {
     // Если клетка уже открыта и содержит число
