@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minesweeper</title>
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<body>
+    <div id="setings">
+        <form name="setings">
+            <label for="rows">Rows:</label>
+            <input type="number" id="rows" name="rows" min="1" max="100" value="10">
+            <br>
+            <label for="cols">Columns:</label>
+            <input type="number" id="cols" name="cols" min="1" max="100" value="10">
+            <br>
+            <label for="cols">Levels:</label>
+            <input type="number" id="lvls" name="lvls" min="1" max="100" value="6">
+            <br>
+            <label for="mines">Mines:</label>
+            <input type="number" id="mines" name="mines" min="1" max="1000" value="100">
+            <br>
+            <button type="submit" id="startGame">Start Game</button>
+        </form>
+    </div>
+    <div id="relFields"></div>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/field.js"></script>
+</body>
+
+</html>

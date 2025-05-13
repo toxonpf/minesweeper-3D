@@ -1,0 +1,25 @@
+body{
+    color: white;
+    background-color: #333;
+    font-family: sans-serif;
+}
+
+td{
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+}
+
+#setings{
+    line-height: 25px;
+}
+
+#relFields{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
