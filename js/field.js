@@ -1,7 +1,7 @@
 const relFields = $('#relFields');
+const flags = $('#flags');
 
 const setings = $('form').children('input');
-
 let rows = setings[0].value;
 let cols = setings[1].value;
 let leveles = setings[2].value;
@@ -227,6 +227,8 @@ function paintNaighbors(cell, state) {
     });
 }
 
+var flagsCount = mines;
+$(flags).html('🚩: ' + flagsCount);
 function toggleFlag(cell) {
     // Проверяем, открыта ли клетка (цвет #222 или rgb(34, 34, 34))
     let bg = $(cell).css('background-color');
@@ -235,9 +237,13 @@ function toggleFlag(cell) {
         if ($(cell).hasClass('flagged')) {
             $(cell).removeClass('flagged');
             $(cell).html('');
+            flagsCount++;
+            $(flags).html('🚩: ' + flagsCount);
         } else {
             $(cell).addClass('flagged');
             $(cell).html('🚩');
+            flagsCount--;
+            $(flags).html('🚩: ' + flagsCount);
         }
     }
 }
