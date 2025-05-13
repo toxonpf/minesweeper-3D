@@ -10,8 +10,8 @@
 
 <body>
     <div id="setings">
-        <form name="setings">
-            <label for="rows">Rows:</label>
+        <form action="/submit" name="setings">
+            <label for="rows">Rows:</label>~
             <input type="number" id="rows" name="rows" min="1" max="100" value="10">
             <br>
             <label for="cols">Columns:</label>
@@ -22,6 +22,8 @@
             <br>
             <label for="mines">Mines:</label>
             <input type="number" id="mines" name="mines" min="1" max="1000" value="100">
+            <br>
+            <button id="submitButton" type="submit">start</button>
         </form>
     </div>
     <div id="relFields"></div>
