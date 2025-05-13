@@ -98,6 +98,8 @@ function openCell(cell) {
     if (isFirstClick) {
         isFirstClick = false;
         generateMinesAfterFirstClick(l, r, c);
+        
+        $('#submitButton').html('restart');
     }
 
     let isMine = false;
@@ -228,7 +230,7 @@ function paintNaighbors(cell, state) {
 }
 
 var flagsCount = mines;
-$(flags).html('🚩: ' + flagsCount);
+$(flags).html('🏳️: ' + flagsCount);
 function toggleFlag(cell) {
     // Проверяем, открыта ли клетка (цвет #222 или rgb(34, 34, 34))
     let bg = $(cell).css('background-color');
@@ -238,12 +240,12 @@ function toggleFlag(cell) {
             $(cell).removeClass('flagged');
             $(cell).html('');
             flagsCount++;
-            $(flags).html('🚩: ' + flagsCount);
+            $(flags).html('🏳️: ' + flagsCount);
         } else {
             $(cell).addClass('flagged');
-            $(cell).html('🚩');
+            $(cell).html('🏳️');
             flagsCount--;
-            $(flags).html('🚩: ' + flagsCount);
+            $(flags).html('🏳️: ' + flagsCount);
         }
     }
 }
