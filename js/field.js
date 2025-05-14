@@ -50,9 +50,9 @@ function openCell(cell) {
     // Если клетка уже открыта и содержит число
     if ($(cell).css('background-color') === 'rgb(34, 34, 34)' && $(cell).text().length > 0) {
         let cellId = $(cell).attr('id');
-        let l = parseInt(cellId[1]);
-        let r = parseInt(cellId[3]);
-        let c = parseInt(cellId[5]);
+        let l = parseCellId(cellId).l;
+        let r = parseCellId(cellId).r;
+        let c = parseCellId(cellId).c;
         let number = parseInt($(cell).text());
 
         // 6 соседей
@@ -90,15 +90,15 @@ function openCell(cell) {
     }
 
     let cellId = $(cell).attr('id');
-    let l = parseInt(cellId[1]);
-    let r = parseInt(cellId[3]);
-    let c = parseInt(cellId[5]);
+    let l = parseCellId(cellId).l;
+    let r = parseCellId(cellId).r;
+    let c = parseCellId(cellId).c;
 
     // Генерация мин только после первого клика
     if (isFirstClick) {
         isFirstClick = false;
         generateMinesAfterFirstClick(l, r, c);
-        
+
         $('#submitButton').html('restart');
     }
 
@@ -189,9 +189,9 @@ function countMinesAround(l, r, c) {
 
 function paintNaighbors(cell, state) {
     let cellId = $(cell).attr('id');
-    let l = parseInt(cellId[1]);
-    let r = parseInt(cellId[3]);
-    let c = parseInt(cellId[5]);
+    let l = parseCellId(cellId).l;
+    let r = parseCellId(cellId).r;
+    let c = parseCellId(cellId).c;
 
     let Cell = $(`#l${l}r${r}c${c}`);
 
@@ -248,4 +248,15 @@ function toggleFlag(cell) {
             $(flags).html('🏳️: ' + flagsCount);
         }
     }
+}
+
+function parseCellId(cellId) {
+    // Ожидает id вида "l{l}r{r}c{c}"
+    let match = cellId.match(/^l(\d+)r(\d+)c(\d+)$/);
+    if (!match) return null;
+    return {
+        l: parseInt(match[1], 10),
+        r: parseInt(match[2], 10),
+        c: parseInt(match[3], 10)
+    };
 }
