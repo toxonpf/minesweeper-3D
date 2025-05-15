@@ -1,6 +1,5 @@
 const relFields = $('#relFields');
 const flags = $('#flags');
-const errorBlock = $('#errorBlock');
 
 const setings = $('#setings').children('input');
 let rows = setings[0].value;
@@ -10,6 +9,7 @@ let mines = setings[3].value;
 var mineCkets = [];
 var isFirstClick = true;
 var flagsCount = mines;
+var isGameOver = false;
 
 function setFieldes() {
     for (let l = 0; l < leveles; l++) {
@@ -85,6 +85,7 @@ $(document).on('input', function () {
 });
 
 function openCell(cell) {
+    if (isGameOver) return;
     // Если клетка уже открыта и содержит число
     if ($(cell).css('background-color') === 'rgb(34, 34, 34)' && $(cell).text().length > 0) {
         let cellId = $(cell).attr('id');
@@ -186,6 +187,8 @@ function revealAllMines() {
         let mineId = `#l${clet.l}r${clet.r}c${clet.c}`;
         $(mineId).css('background-color', 'red');
     });
+
+    isGameOver = true;
 }
 
 function countMinesAround(l, r, c) {
