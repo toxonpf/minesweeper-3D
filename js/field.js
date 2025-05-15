@@ -1,7 +1,7 @@
 const relFields = $('#relFields');
 const flags = $('#flags');
 
-const setings = $('form').children('input');
+const setings = $('#setings').children('input');
 let rows = setings[0].value;
 let cols = setings[1].value;
 let leveles = setings[2].value;
@@ -42,6 +42,7 @@ $(document).on('input', function () {
     leveles = setings[2].value;
     mines = setings[3].value;
 
+    isFirstClick = true;
     relFields.empty();
     setFieldes();
 });
