@@ -4,7 +4,7 @@ body{
     font-family: sans-serif;
 }
 
-td{ 
+.cell{
     width: 20px;
     height: 20px;
     font-size: 10px;
@@ -25,7 +25,7 @@ input{
 }
 
 #relFields{
-    min-width: 1304px;
+    min-width: fit-content;
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;

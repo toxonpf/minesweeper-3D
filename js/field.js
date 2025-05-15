@@ -37,6 +37,7 @@ function setFieldes() {
         }
     }
 }
+
 setFieldes();
 $(document).on('input', function () {
     rows = setings[0].value;
