@@ -71,6 +71,7 @@ $(document).on('input', function () {
     } else if (leveles > 50 && leveles < 100) {
         alert('if your device is not powerful enough, it may freeze');
     } else if (leveles > 100) {
+        alert('max leveles is 100');
         leveles = 100;
         setings[2].value = leveles;
     }
