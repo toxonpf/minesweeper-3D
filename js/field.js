@@ -1,5 +1,6 @@
 const relFields = $('#relFields');
 const flags = $('#flags');
+const errorBlock = $('#errorBlock');
 
 const setings = $('#setings').children('input');
 let rows = setings[0].value;
@@ -8,6 +9,7 @@ let leveles = setings[2].value;
 let mines = setings[3].value;
 var mineCkets = [];
 var isFirstClick = true;
+var flagsCount = mines;
 
 function setFieldes() {
     for (let l = 0; l < leveles; l++) {
@@ -42,6 +44,39 @@ $(document).on('input', function () {
     leveles = setings[2].value;
     mines = setings[3].value;
 
+    if (mines > rows * cols * leveles * 0.9) {
+        mines = Math.floor(rows * cols * leveles * 0.9);
+        setings[3].value = mines;
+    } else if (mines < 1) {
+        mines = 1;
+        setings[3].value = mines;
+    }
+
+    if (rows < 1) {
+        rows = 1;
+    } else if (rows > 50) {
+        rows = 50;
+        setings[0].value = rows;
+    }
+
+    if (cols < 1) {
+        cols = 1;
+    } else if (cols > 50) {
+        cols = 50;
+        setings[1].value = cols;
+    }
+
+    if (leveles < 1) {
+        leveles = 1;
+    } else if (leveles > 50 && leveles < 100) {
+        alert('if your device is not powerful enough, it may freeze');
+    } else if (leveles > 100) {
+        leveles = 100;
+        setings[2].value = leveles;
+    }
+
+    flagsCount = mines;
+    $(flags).html('🏳️: ' + flagsCount);
     isFirstClick = true;
     relFields.empty();
     setFieldes();
@@ -230,7 +265,6 @@ function paintNaighbors(cell, state) {
     });
 }
 
-var flagsCount = mines;
 $(flags).html('🏳️: ' + flagsCount);
 function toggleFlag(cell) {
     // Проверяем, открыта ли клетка (цвет #222 или rgb(34, 34, 34))
