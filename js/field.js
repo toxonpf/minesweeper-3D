@@ -50,7 +50,7 @@ $(document).on('input', function () {
         setings[3].value = mines;
     } else if (mines < 1) {
         mines = 1;
-        setings[3].value = mines;
+        alert('mines must be more than 1 (now it is 1)');
     }
 
     if (rows < 1) {
