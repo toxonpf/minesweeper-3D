@@ -37,11 +37,15 @@ input{
 }
 
 #submitButton{
-    margin: 20px 0px 10px 0px;
+    height: 40px;
     padding: 10px 20px;
     background-color: #555;
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 0px 0px 10px 10px;
+    position: absolute;
+    right: 20px;
+    top: 0px;
+    display: none;
 }

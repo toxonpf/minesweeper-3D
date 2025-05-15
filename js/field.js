@@ -11,6 +11,8 @@ var isFirstClick = true;
 var flagsCount = mines;
 var isGameOver = false;
 
+
+
 function setFieldes() {
     for (let l = 0; l < leveles; l++) {
         relFields.append('<table border="1" class="field"></table>');
@@ -137,7 +139,7 @@ function openCell(cell) {
     if (isFirstClick) {
         isFirstClick = false;
         generateMinesAfterFirstClick(l, r, c);
-
+        $('#submitButton').slideDown(500);
         $('#submitButton').html('restart');
     }
 
@@ -299,4 +301,15 @@ function parseCellId(cellId) {
         r: parseInt(match[2], 10),
         c: parseInt(match[3], 10)
     };
+}
+
+function restart() {
+    isFirstClick = true;
+    flagsCount = mines;
+    $(flags).html('🏳️: ' + flagsCount);
+    isGameOver = false;
+    relFields.empty();
+    setFieldes();
+
+    $('#submitButton').slideUp(500);
 }
